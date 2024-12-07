@@ -15,13 +15,13 @@ from datetime import datetime
 from database.database import user_data, db_verify_status, db_update_verify_status
 
 async def is_subscribed(filter, client, update):
-    if not (FORCE_SUB_CHANNEL or FORCE_SUB_CHANNEL2):
+    if not (FORCE_SUB_CHANNEL or FORCE_SUB_CHANNEL2 or FORCE_SUB_CHANNEL3):
         return True
     user_id = update.from_user.id
     if user_id in ADMINS:
         return True
     member_status = ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER
-    for channel_id in [FORCE_SUB_CHANNEL, FORCE_SUB_CHANNEL2]:
+    for channel_id in [FORCE_SUB_CHANNEL, FORCE_SUB_CHANNEL2, FORCE_SUB_CHANNEL3]:
         if not channel_id:
             continue
         try:
