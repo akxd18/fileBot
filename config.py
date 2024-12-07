@@ -9,52 +9,52 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 #Bot token @Botfather
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "7223199796:AAH9EuMyohYZ-k2CIK3AOsCr2y_yQvVmhes")
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "7781314782:AAGMlMH3RZGLzMCgg-dgSGLtLY3zDiWWcvM")
 
 #Your API ID from my.telegram.org
-APP_ID = int(os.environ.get("APP_ID", "25839862"))
+APP_ID = int(os.environ.get("APP_ID", "9698652"))
 
 #Your API Hash from my.telegram.org
-API_HASH = os.environ.get("API_HASH", "ef417c527eae44d9ddb662743fbbedcc")
+API_HASH = os.environ.get("API_HASH", "b354710ab18b84e00b65c62ba7a9c043")
 
 #Your db channel Id
-CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1002008354608"))
+CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1002385560786"))
 
 #OWNER ID
-OWNER_ID = int(os.environ.get("OWNER_ID", "7328629001"))
+OWNER_ID = int(os.environ.get("OWNER_ID", "2125687935"))
 
 #Port
 PORT = os.environ.get("PORT", "8008")
 
-DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://koyeb77user:rohit870@cluster0.wgdkp.mongodb.net/?retryWrites=true&w=majority")
-DB_NAME = os.environ.get("DATABASE_NAME", "FilesStoringBot")
+DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://vicky:2003@cluster0.8nlgd2c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+DB_NAME = os.environ.get("DATABASE_NAME", "vicky")
 
 #Time in seconds for message delete, put 0 to never delete
-TIME = int(os.environ.get("TIME", "0"))
+TIME = int(os.environ.get("TIME", "64800"))
 
-SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "modijiurl.com")
-SHORTLINK_API = os.environ.get("SHORTLINK_API", "beb3b795a226177f3af7c937a2f01d5d7d4f4cf0")
-VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', "86400")) # Add time in seconds
+SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "inshorturl.com")
+SHORTLINK_API = os.environ.get("SHORTLINK_API", "c6afac58d50114bfb3e1c6aad64f90e0591bf77e")
+VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', "36000")) # Add time in seconds
 IS_VERIFY = os.environ.get("IS_VERIFY", "True")
-TUT_VID = os.environ.get("TUT_VID", "https://t.me/paymentbot6/5")
+TUT_VID = os.environ.get("TUT_VID", "https://t.me/delight_link/2")
 
 #force sub channel id, if you want enable force sub
-FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "-1002215102799"))
-FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCESUB_CHANNEL2", "-1002485124074"))
+FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "-1002084114293"))
+FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCESUB_CHANNEL2", "-1001802782627"))
 
 
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 
-START_PIC = os.environ.get("START_PIC", "https://telegra.ph/file/ec17880d61180d3312d6a.jpg")
-FORCE_PIC = os.environ.get("FORCE_PIC", "https://telegra.ph/file/e292b12890b8b4b9dcbd1.jpg")
+START_PIC = os.environ.get("START_PIC", "https://envs.sh/Rv_.jpg")
+FORCE_PIC = os.environ.get("FORCE_PIC", "https://envs.sh/Rvc.jpg")
 
-QR_PIC = os.environ.get("QR_PIC", "https://envs.sh/B7w.png")
+QR_PIC = os.environ.get("QR_PIC", "https://envs.sh/RvG.jpg")
 
 #start message
 START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link.")
 try:
     ADMINS=[]
-    for x in (os.environ.get("ADMINS", "6955387260 7328629001").split()):
+    for x in (os.environ.get("ADMINS", "2125687935").split()):
         ADMINS.append(int(x))
 except ValueError:
         raise Exception("Your Admins list does not contain valid integers.")
@@ -63,10 +63,10 @@ except ValueError:
 FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "Hello {first}\n\n<b>You need to join in my Channel/Group to use me\n\nKindly Please join Channel</b>")
 
 #set your Custom Caption here, Keep None for Disable Custom Caption
-CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", "<b>ʙʏ @Javpostr</b>")
+CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", "<b>ʙʏ @DelightNetwork</b>")
 
 #set True if you want to prevent users from forwarding files from bot
-PROTECT_CONTENT = True if os.environ.get('FALSE', "False") == "True" else False
+PROTECT_CONTENT = True if os.environ.get('FALSE', "True") == "True" else False
 
 #==========================(BUY PREMIUM)====================#
 
@@ -78,10 +78,10 @@ PREMIUM_BUTTON2 = reply_markup=InlineKeyboardMarkup(
         [[InlineKeyboardButton("Remove Ads In One Click", callback_data="buy_prem")]]
 ) 
 
-OWNER_TAG = os.environ.get("OWNER_TAG", "rohit_1888")
+OWNER_TAG = os.environ.get("OWNER_TAG", "delight_admin_bot")
 
 #UPI ID
-UPI_ID = os.environ.get("UPI_ID", "rohit23pnb@axl")
+UPI_ID = os.environ.get("UPI_ID", "contact admin @delight_admin_bot")
 
 #UPI QR CODE IMAGE
 UPI_IMAGE_URL = os.environ.get("UPI_IMAGE_URL", "https://t.me/paymentbot6/2")
@@ -97,16 +97,16 @@ SCREENSHOT_URL = os.environ.get("SCREENSHOT_URL", f"t.me/{OWNER_TAG}")
 PRICE1 = os.environ.get("PRICE1", "0 rs")
 
 #1 Month
-PRICE2 = os.environ.get("PRICE2", "49 rs")
+PRICE2 = os.environ.get("PRICE2", "130 rs")
 
 #3 Month
-PRICE3 = os.environ.get("PRICE3", "135 rs")
+PRICE3 = os.environ.get("PRICE3", "330 rs")
 
 #6 Month
-PRICE4 = os.environ.get("PRICE4", "250 rs")
+PRICE4 = os.environ.get("PRICE4", "700 rs")
 
 #1 Year
-PRICE5 = os.environ.get("PRICE5", "500 rs")
+PRICE5 = os.environ.get("PRICE5", "1300 rs")
 
 
 #===================(END)========================#
