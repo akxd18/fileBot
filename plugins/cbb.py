@@ -10,7 +10,7 @@ async def cb_handler(client: Bot, query: CallbackQuery):
     if data == "about":
         await query.message.edit_text(
             text=(
-                f"<b>○ Creator : <a href='tg://user?id={OWNER_ID}'>Rohit</a>\n"
+                f"<b>○ Updates : <a href='https://t.me/DelightNetwork'>Delight Network</a>\n"
                 f"○ Language : <code>Python3</code>\n"
                 f"○ Library : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio {__version__}</a>"
             ),
@@ -41,16 +41,15 @@ async def cb_handler(client: Bot, query: CallbackQuery):
                 f"● {PRICE3}  For 3 Months Prime Membership\n\n"
                 f"● {PRICE4}  For 6 Months Prime Membership\n\n"
                 f"● {PRICE5}  For 1 Year Prime Membership\n\n\n"
-                f"💵 UPI ID -  <code>{UPI_ID}</code>\n\n\n"
-                f"📸 QR - ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ꜱᴄᴀɴ ({UPI_IMAGE_URL})\n\n"
-                f"♻️ If payment is not getting sent on above given QR code then inform admin, he will give you new QR code\n\n\n"
-                f"‼️ Must Send Screenshot after payment"
+                f"💵 ASK UPI ID TO ADMIN AND PAY THERE -  <code>{UPI_ID}</code>\n\n\n"
+                f"♻️ After Payment You Will Get Instant Membership \n\n\n"
+                f"‼️ Must Send Screenshot after payment & If anyone want custom time membrship then ask admin"
             ),
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            "Send Payment Screenshot(ADMIN) 📸", url=(SCREENSHOT_URL)
+                            "ADMIN 24/7", url=(SCREENSHOT_URL)
                         )
                     ],
                     [InlineKeyboardButton("🔒 Close", callback_data="close")],
