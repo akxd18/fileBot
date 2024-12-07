@@ -61,7 +61,7 @@ async def start_command(client: Client, message: Message):
             await update_verify_status(id, is_verified=True, verified_time=time.time())
             if verify_status["link"] == "":
                 await message.reply(
-                    "Your token successfully verified and valid for: 24 Hour", 
+                    "Your token successfully verified 🥳🎉 and valid for: 18 Hours ⏳", 
                     reply_markup=PREMIUM_BUTTON,
                     protect_content=False, 
                     quote=True
@@ -69,7 +69,7 @@ async def start_command(client: Client, message: Message):
         elif string.startswith("premium"):
             if not is_premium:
                 # Notify user to get premium
-                await message.reply("Buy premium to access this content\nTo Buy Contact @rohit_1888", reply_markup=PREMIUM_BUTTON2)
+                await message.reply("Buy premium to access this content\nTo Buy Contact @delight_admin_bot", reply_markup=PREMIUM_BUTTON2)
                 return
             
             # Handle premium logic
@@ -135,14 +135,14 @@ async def start_command(client: Client, message: Message):
             if SECONDS == 0:
                 return
 
-            notification_msg = await message.reply(f"<b>🌺 <u>Notice</u> 🌺</b>\n\n<b>This file will be deleted in {get_exp_time(SECONDS)}. Please save or forward it to your saved messages before it gets deleted.</b>")
+            notification_msg = await message.reply(f"<b>🌺 <u>Notice</u> 🌺</b>\n\n<b>This above content will be deleted in {get_exp_time(SECONDS)}.</b>")
             await asyncio.sleep(SECONDS)    
             for snt_msg in snt_msgs:    
                 try:    
                     await snt_msg.delete()  
                 except: 
                     pass    
-            await notification_msg.edit("<b>Your file has been successfully deleted! 😼</b>")  
+            await notification_msg.edit("<b>Your stuffs has been successfully deleted!</b>")  
             return
 
         elif string.startswith("get"):
@@ -155,7 +155,7 @@ async def start_command(client: Client, message: Message):
                         [InlineKeyboardButton("Click here", url=link), InlineKeyboardButton('How to use the bot', url=TUT_VID)],  # First row with two buttons
                         [InlineKeyboardButton('BUY PREMIUM', callback_data='buy_prem')]  # Second row with one button
                     ]
-                    await message.reply(f"Your Ads token is expired or invalid. Please verify to access the files.\n\nToken Timeout: {get_exp_time(VERIFY_EXPIRE)}\n\nWhat is the token?\n\nThis is an ads token. If you pass 1 ad, you can use the bot for 24 Hours after passing the ad.", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
+                    await message.reply(f"Hey Boss..Your Ads token is expired, refresh your token and try again 🚀.\n\nToken Timeout ⏳: 18 Hours\n\nWhat is the token 🤔?\n\nThis is an ads token 🎟️. If you pass 1 ad, you can use the bot for 18 Hours after passing the ad 🥳🎉.\n\nImportant Notice - If you have iPhone and using this bot from iPhone then long press the Open Link button and copy the link then paste the link in browser then get verified 🥳🎉.", reply_markup=InlineKeyboardMarkup(btn), protect_content=False, quote=True)
                     return
 
             try:
@@ -219,14 +219,14 @@ async def start_command(client: Client, message: Message):
             if SECONDS == 0:
                 return
 
-            notification_msg = await message.reply(f"<b>🌺 <u>Notice</u> 🌺</b>\n\n<b>This file will be deleted in {get_exp_time(SECONDS)}. Please save or forward it to your saved messages before it gets deleted.</b>")
+            notification_msg = await message.reply(f"<b>🌺 <u>Notice</u> 🌺</b>\n\n<b>This above content will be deleted in {get_exp_time(SECONDS)}.</b>")
             await asyncio.sleep(SECONDS)    
             for snt_msg in snt_msgs:    
                 try:    
                     await snt_msg.delete()  
                 except: 
                     pass    
-            await notification_msg.edit("<b>Your file has been successfully deleted! 😼</b>")  
+            await notification_msg.edit("<b>Your stuff has been successfully deleted!</b>")  
             return
     else:
         try:
@@ -264,8 +264,11 @@ REPLY_ERROR = """<code>Use this command as a replay to any telegram message with
 async def not_joined(client: Client, message: Message):
     buttons = [
         [
-            InlineKeyboardButton(text="ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ", url=client.invitelink),
-            InlineKeyboardButton(text="ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ •", url=client.invitelink2),
+            InlineKeyboardButton(text="💋 ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ 💋", url=client.invitelink),
+            InlineKeyboardButton(text="🥰 ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ 🥰", url=client.invitelink2),
+        ],
+        [
+            InlineKeyboardButton(text="💟 ᴊᴏɪɴ ᴄʜᴀɴɴᴇʟ 💟", url=client.invitelink3),
         ]
     ]
     try:
