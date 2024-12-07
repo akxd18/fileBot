@@ -81,7 +81,7 @@ PREMIUM_BUTTON2 = reply_markup=InlineKeyboardMarkup(
 OWNER_TAG = os.environ.get("OWNER_TAG", "delight_admin_bot")
 
 #UPI ID
-UPI_ID = os.environ.get("UPI_ID", "contact admin @delight_admin_bot")
+UPI_ID = os.environ.get("UPI_ID", "@delight_admin_bot")
 
 #UPI QR CODE IMAGE
 UPI_IMAGE_URL = os.environ.get("UPI_IMAGE_URL", "https://t.me/paymentbot6/2")
