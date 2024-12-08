@@ -135,7 +135,7 @@ async def start_command(client: Client, message: Message):
             if SECONDS == 0:
                 return
 
-            notification_msg = await message.reply(f"<b>🌺 <u>Notice</u> 🌺</b>\n\n<b>This above content will be deleted in {get_exp_time(SECONDS)}.</b>")
+            notification_msg = await message.reply(f"<b>🌺 <u>Notice</u> 🌺</b>\n\n<b>This above content will be deleted in 30 minutes.</b>")
             await asyncio.sleep(SECONDS)    
             for snt_msg in snt_msgs:    
                 try:    
@@ -219,7 +219,7 @@ async def start_command(client: Client, message: Message):
             if SECONDS == 0:
                 return
 
-            notification_msg = await message.reply(f"<b>🌺 <u>Notice</u> 🌺</b>\n\n<b>This above content will be deleted in {get_exp_time(SECONDS)}.</b>")
+            notification_msg = await message.reply(f"<b>🌺 <u>Notice</u> 🌺</b>\n\n<b>This above content will be deleted in 30 minutes.</b>")
             await asyncio.sleep(SECONDS)    
             for snt_msg in snt_msgs:    
                 try:    
