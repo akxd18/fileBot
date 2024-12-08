@@ -95,7 +95,7 @@ SCREENSHOT_URL = os.environ.get("SCREENSHOT_URL", f"t.me/delight_admin_bot")
 #Time and its price
 
 #7 Days
-PRICE1 = os.environ.get("PRICE1", "0 rs")
+PRICE1 = os.environ.get("PRICE1", "69 rs")
 
 #1 Month
 PRICE2 = os.environ.get("PRICE2", "130 rs")
