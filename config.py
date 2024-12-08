@@ -30,7 +30,7 @@ DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://vicky:2003@cluster0.8nlgd
 DB_NAME = os.environ.get("DATABASE_NAME", "vicky")
 
 #Time in seconds for message delete, put 0 to never delete
-TIME = int(os.environ.get("TIME", "0"))
+TIME = int(os.environ.get("TIME", "1800"))
 
 SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "inshorturl.com")
 SHORTLINK_API = os.environ.get("SHORTLINK_API", "c6afac58d50114bfb3e1c6aad64f90e0591bf77e")
