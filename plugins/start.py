@@ -347,24 +347,34 @@ Unsuccessful: <code>{unsuccessful}</code></b>"""
         await asyncio.sleep(8)
         await msg.delete()
 
+
+# Command to add premium user
 @Bot.on_message(filters.private & filters.command('addpaid') & filters.user(ADMINS))
-async def add_premium_user(client: Client, msg: Message):
+async def add_premium_user_command(client, msg):
     if len(msg.command) != 3:
-        await msg.reply_text("usage: /addpremium user_id time_limit_months")
+        await msg.reply_text("Usage: /addpaid <user_id> <time_limit_minutes>")
         return
+
     try:
         user_id = int(msg.command[1])
-        time_limit_months = int(msg.command[2])
-        await add_premium(user_id, time_limit_months)
-        await msg.reply_text(f"User {user_id} added as a paid user with {time_limit_months}-days plan.")
-        await client.send_message(
-                chat_id= user_id,
-                text=f"**ᴄᴏɴɢʀᴀᴛᴜʟᴀᴛɪᴏɴs ɴᴏᴡ ʏᴏᴜ ᴀʀᴇ ᴜᴘɢʀᴀᴅᴇᴅ ᴛᴏ {time_limit_months} ᴅᴀʏs sᴜʙsᴄʀɪᴘᴛɪᴏɴ**",
-                parse_mode=ParseMode.MARKDOWN
-            )
-    except ValueError:
-        await msg.reply_text("Invalid user_id or time_limit. Please recheck.")
+        time_limit_minutes = int(msg.command[2])
 
+        await add_premium(user_id, time_limit_minutes)
+
+        await msg.reply_text(
+            f"User {user_id} added as a premium user for {time_limit_minutes} minutes."
+        )
+        await client.send_message(
+            chat_id=user_id,
+            text=f"🎉 Congratulations! You have been upgraded to premium for {time_limit_minutes} minutes.",
+        )
+    except ValueError:
+        await msg.reply_text("Invalid user_id or time_limit_minutes. Please recheck.")
+    except Exception as e:
+        await msg.reply_text(f"An error occurred: {str(e)}")
+
+
+# Command to remove premium user
 @Bot.on_message(filters.private & filters.command('removepaid') & filters.user(ADMINS))
 async def pre_remove_user(client: Client, msg: Message):
     if len(msg.command) != 2:
@@ -377,32 +387,63 @@ async def pre_remove_user(client: Client, msg: Message):
     except ValueError:
         await msg.reply_text("user_id must be an integer or not available in database.")
 
-from pyrogram.errors.exceptions.bad_request_400 import PeerIdInvalid
+
+# Command to list active premium users
 @Bot.on_message(filters.private & filters.command('listpaid') & filters.user(ADMINS))
 async def list_premium_users_command(client, message):
-    premium_users = collection.find({})
-    premium_user_list = ['Premium Users in database:']
+    premium_users_cursor = collection.find({})
+    premium_user_list = ['Active Premium Users in database:']
+    current_time = time.time()
 
-    for user in premium_users:
-        user_ids = user["user_id"]
+    # Use async for to iterate over the async cursor
+    async for user in premium_users_cursor:
+        user_id = user["user_id"]
+        expiration_timestamp = user["expiration_timestamp"]
+
         try:
-            user_info = await client.get_users(user_ids)
-            username = user_info.username
-            first_name = user_info.first_name
-            expiration_timestamp = user["expiration_timestamp"]
-            xt = (expiration_timestamp - time.time())
-            x = round(xt / (24 * 60 * 60))
-            premium_user_list.append(f"UserID- <code>{user_ids}</code>\nUser- @{username}\nName- <code>{first_name}</code>\nExpiry- {x} days")
-        except PeerIdInvalid:
-            premium_user_list.append(f"UserID- <code>{user_ids}</code>\nUser- <code>Invalid ID</code>\nName- <code>Unknown</code>\nExpiry- <code>N/A</code>")
-        except Exception as e:
-            premium_user_list.append(f"UserID- <code>{user_ids}</code>\nUser- <code>Error: {str(e)}</code>\nName- <code>Unknown</code>\nExpiry- <code>N/A</code>")
+            # Convert expiration_timestamp to a datetime object
+            expiration_time = datetime.fromisoformat(expiration_timestamp)
 
-    if premium_user_list:
-        formatted_list = [f"{user}" for user in premium_user_list]
-        await message.reply_text("\n\n".join(formatted_list))
+            # Convert expiration_time to timestamp for comparison
+            expiration_timestamp_unix = expiration_time.timestamp()
+
+            if expiration_timestamp_unix < current_time:
+                # Remove expired users from the database
+                await collection.delete_one({"user_id": user_id})
+                continue  # Skip to the next user if this one is expired
+
+            # If not expired, retrieve user info
+            user_info = await client.get_users(user_id)
+            username = user_info.username if user_info.username else "No Username"
+            first_name = user_info.first_name
+
+            # Calculate remaining time
+            remaining_time = expiration_time - datetime.now()
+
+            days, hours, minutes, seconds = (
+                remaining_time.days,
+                remaining_time.seconds // 3600,
+                (remaining_time.seconds // 60) % 60,
+                remaining_time.seconds % 60,
+            )
+            expiry_info = f"{days}d {hours}h {minutes}m {seconds}s left"
+
+            premium_user_list.append(
+                f"UserID: <code>{user_id}</code>\n"
+                f"User: @{username}\n"
+                f"Name: <code>{first_name}</code>\n"
+                f"Expiry: {expiry_info}"
+            )
+        except Exception as e:
+            premium_user_list.append(
+                f"UserID: <code>{user_id}</code>\n"
+                f"Error: Unable to fetch user details ({str(e)})"
+            )
+
+    if len(premium_user_list) == 1:  # No active users found
+        await message.reply_text("I found 0 active premium users in my DB")
     else:
-        await message.reply_text("I found 0 premium users in my DB")
+        await message.reply_text("\n\n".join(premium_user_list), parse_mode=None)
 
 
 
